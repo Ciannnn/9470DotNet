@@ -2,7 +2,7 @@ using System;
 
 namespace Anudip_Exercise
 {
-    class Multicast
+    class Singlecast_DelEvents
     {
         public delegate void MyDelegate(int a);
          public class XX
