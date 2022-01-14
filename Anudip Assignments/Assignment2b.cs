@@ -1,30 +1,60 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
 
-namespace Anudip_Exercise
+namespace IEnumerableInterface
 {
-    class Assignment2a
+    public partial class Assignment2b : System.Web.UI.Page
     {
-		static public void Main()
-		{
+        protected void Page_Load(object sender, EventArgs e)
+        {
+        }
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            foreach (var cust in GetAllCustomer())
+            {
+              Response.Write("Name: "+cust.Name + "<br> " +"City: " +cust.City + " <br> "
+                        +"Mobile "+cust.Mobile+"<br> "+"Amount :" +cust.Amount.ToString("c") + "<br>"+"-----"+"<br>");
+            }
+        }
+        public class Customer
+        {
+            private String _Name, _City;
+            private long _Mobile;
+            private double _Amount;
 
-			// Creating a sortedlist
-			// Using SortedList class
-			SortedList my_slist1 = new SortedList();
+            public String Name
+            {
+                get { return _Name; }
+                set { _Name = value; }
+            }
+            public String City
+            {
+                get { return _City; }
+                set { _City = value; }
+            }
 
-			// Adding key/value pairs in
-			// SortedList using Add() method
-			my_slist1.Add(1.02, "This");
-			my_slist1.Add(1.07, "Is");
-			my_slist1.Add(1.04, "SortedList");
-			my_slist1.Add(1.01, "Tutorial");
+            public long Mobile
+            {
+                get { return _Mobile; }
+                set { _Mobile = value; }
+            }
+            public double Amount
+            {
+                get { return _Amount; }
+                set { _Amount = value; }
+            }
+        }
+        Customer[] customers = new Customer[]
+        {
 
-			foreach (DictionaryEntry pair in my_slist1)
-			{
-				Console.WriteLine("{0} and {1}",
-						pair.Key, pair.Value);
-			}
-		}
-	}
+            new Customer {Name="Vithal Wadje",City="Mumbai",Mobile=99999999999,Amount=89.45 },
+            new Customer { Name = "Sudhir Wadje", City = "Latur", Mobile = 88888888888888888888, Amount =426.00 },
+            new Customer { Name = "Anil", City = "Delhi", Mobile = 77777777777777777777, Amount = 5896.20 }
+        };
+
+        public IEnumerable<Customer> GetAllCustomer()
+        {
+            return customers;
+        }
+    }
 }
